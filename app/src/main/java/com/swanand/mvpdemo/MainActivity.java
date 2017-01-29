@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainPresenter=new MainPresenter(this);
+        mainPresenter.presentDetails();
         button= (Button) findViewById(R.id.btn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void openNewWindow() {
-        Intent intent=new Intent(MainActivity.this,Main2Activity.class);
+        Intent intent=new Intent(MainActivity.this,QuestionsActivity.class);
         startActivity(intent);
     }
 }
