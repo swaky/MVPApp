@@ -26,8 +26,8 @@ public class QuestionsActivity extends AppCompatActivity implements QuestionsVie
         setContentView(R.layout.activity_questions);
 
         initRecyclerView();
-        questionsPresenter=new QuestionsPresenter(this);
-        questionsPresenter.presentQuestions();
+        questionsPresenter=new QuestionsPresenter();
+        questionsPresenter.presentQuestions(this);
 
     }
 

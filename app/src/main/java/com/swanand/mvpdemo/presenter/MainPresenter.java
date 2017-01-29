@@ -21,13 +21,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainPresenter {
 
-    private final MainView mainView;
-    public MainPresenter(MainView mainView) {
 
-        this.mainView = mainView;
+    public MainPresenter() {
+
+
     }
 
-    public void onButtonClick(){
+    public void onButtonClick(MainView mainView){
         mainView.openNewWindow();
 
     }

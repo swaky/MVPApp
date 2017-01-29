@@ -20,15 +20,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class QuestionsPresenter {
-    private final QuestionsView questionsView;
+    private QuestionsView questionsView;
     private static Retrofit retrofit = null;
 
-    public QuestionsPresenter(QuestionsView questionsView) {
-        this.questionsView = questionsView;
+    public QuestionsPresenter() {
+
     }
 
-    public void presentQuestions()
+    public void presentQuestions(QuestionsView questionsView)
     {
+    this.questionsView=questionsView;
         questionsView.showProgressDialog();
         getDetails();
 
