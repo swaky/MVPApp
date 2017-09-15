@@ -3,6 +3,7 @@ package com.swanand.mvpdemo.presenter;
 import android.app.LauncherActivity;
 
 import com.swanand.mvpdemo.model.Item;
+import com.swanand.mvpdemo.model.Questions;
 import com.swanand.mvpdemo.view.QuestionsView;
 
 import org.junit.Before;
@@ -11,6 +12,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -30,5 +32,16 @@ public class QuestionPresenterTest {
         QuestionsView questionsView=mock(QuestionsView.class);
         questionsPresenter.presentQuestions(questionsView);
         verify(questionsView).showProgressDialog();
+
+
+    }
+
+    @Test
+    public void testQuestionApi()
+    {
+QuestionsView questionsView=mock(QuestionsView.class);
+        questionsPresenter.getDetails();
+        List<Item> questionses=new ArrayList<>();
+        verify(questionsView).renderData(questionses);
     }
 }

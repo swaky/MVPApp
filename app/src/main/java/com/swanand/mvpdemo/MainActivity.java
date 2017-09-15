@@ -12,7 +12,7 @@ import com.swanand.mvpdemo.view.MainView;
 public class MainActivity extends AppCompatActivity implements MainView {
 
     private MainPresenter mainPresenter;
-    private Button button;
+    private Button button,viewtab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,11 +26,24 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 mainPresenter.onButtonClick(MainActivity.this);
             }
         });
+        viewtab= (Button) findViewById(R.id.btn_viewtab);
+        viewtab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainPresenter.showTabAcvitivty(MainActivity.this);
+            }
+        });
     }
 
     @Override
     public void openNewWindow() {
         Intent intent=new Intent(MainActivity.this,QuestionsActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void openTabWindow() {
+        Intent intent=new Intent(MainActivity.this,TabActivity.class);
         startActivity(intent);
     }
 }

@@ -6,4 +6,5 @@ package com.swanand.mvpdemo.view;
 
 public interface MainView {
      void openNewWindow();
+     void openTabWindow();
 }

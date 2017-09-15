@@ -33,6 +33,11 @@ public class MainPresenter {
     }
 
 
+    public void showTabAcvitivty(MainView mainView)
+    {
+        mainView.openTabWindow();
+    }
+
     public void presentDetails() {
 
     }
