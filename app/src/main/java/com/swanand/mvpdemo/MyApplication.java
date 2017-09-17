@@ -42,9 +42,6 @@ public class MyApplication extends Application {
 
         StackApplicationComponent component= DaggerStackApplicationComponent.builder()
                 .contextModule(new ContextModule(this))
-                .stackApplicationModule(new StackApplicationModule())
-                .networkModule(new NetworkModule())
-                .picassoModule(new PicassoModule())
                 .build();
 
         apiInterface=component.getApiInterface();

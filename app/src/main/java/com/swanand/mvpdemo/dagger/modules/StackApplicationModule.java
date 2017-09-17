@@ -1,6 +1,7 @@
 package com.swanand.mvpdemo.dagger.modules;
 
 import com.swanand.mvpdemo.api.ApiInterface;
+import com.swanand.mvpdemo.dagger.scopes.StackApplicationScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -16,11 +17,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class StackApplicationModule {
 
     @Provides
+    @StackApplicationScope
     public ApiInterface apiInterface(Retrofit retrofit){
         return retrofit.create(ApiInterface.class);
     }
 
     @Provides
+    @StackApplicationScope
     public Retrofit retrofit(OkHttpClient okHttpClient)
     {
         return  new Retrofit.Builder()

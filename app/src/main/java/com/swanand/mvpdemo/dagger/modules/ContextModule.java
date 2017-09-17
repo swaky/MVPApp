@@ -2,6 +2,8 @@ package com.swanand.mvpdemo.dagger.modules;
 
 import android.content.Context;
 
+import com.swanand.mvpdemo.dagger.scopes.StackApplicationScope;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -18,6 +20,7 @@ public class ContextModule {
     }
 
     @Provides
+    @StackApplicationScope
     public Context context(){
         return context;
     }

@@ -2,6 +2,8 @@ package com.swanand.mvpdemo.dagger.modules;
 
 import android.content.Context;
 
+import com.swanand.mvpdemo.dagger.scopes.StackApplicationScope;
+
 import java.io.File;
 
 import dagger.Module;
@@ -19,6 +21,7 @@ import timber.log.Timber;
 public class NetworkModule {
 
     @Provides
+    @StackApplicationScope
     public HttpLoggingInterceptor loggingInterceptor()
     {
        return new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
@@ -30,6 +33,7 @@ public class NetworkModule {
     }
 
     @Provides
+    @StackApplicationScope
     public Cache cache(File cachefile)
     {
         return new Cache(cachefile,10*1000*1000); //10MB Cache
@@ -37,6 +41,7 @@ public class NetworkModule {
     }
 
     @Provides
+    @StackApplicationScope
     public File cachefile(Context context)
     {
         return new File(context.getCacheDir(),"okhttp_cache");
@@ -44,6 +49,7 @@ public class NetworkModule {
     }
 
     @Provides
+    @StackApplicationScope
     public OkHttpClient okHttpClient(HttpLoggingInterceptor loggingInterceptor, Cache cache){
         return new OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
