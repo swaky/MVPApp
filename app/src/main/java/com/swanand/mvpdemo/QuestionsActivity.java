@@ -9,13 +9,20 @@ import android.support.v7.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 import com.swanand.mvpdemo.adapters.QuestionsAdapter;
+import com.swanand.mvpdemo.dagger.components.DaggerQuestionActivityComponent;
+import com.swanand.mvpdemo.dagger.components.QuestionActivityComponent;
+import com.swanand.mvpdemo.dagger.modules.QuestionActivityModule;
 import com.swanand.mvpdemo.model.Item;
 import com.swanand.mvpdemo.presenter.QuestionsPresenter;
 import com.swanand.mvpdemo.view.QuestionsView;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class QuestionsActivity extends AppCompatActivity implements QuestionsView {
+
+    @Inject
     QuestionsPresenter questionsPresenter;
     ProgressDialog progressDialog;
     QuestionsAdapter questionsAdapter;
@@ -27,7 +34,13 @@ public class QuestionsActivity extends AppCompatActivity implements QuestionsVie
         setContentView(R.layout.activity_questions);
 
         initRecyclerView();
-        questionsPresenter=new QuestionsPresenter(this);
+
+        QuestionActivityComponent component= DaggerQuestionActivityComponent.builder()
+                .questionActivityModule(new QuestionActivityModule(this))
+                .stackApplicationComponent(MyApplication.get(this).getComponent())
+                .build();
+
+        component.injectQuestionActivity(this);
         questionsPresenter.presentQuestions(this);
 
     }

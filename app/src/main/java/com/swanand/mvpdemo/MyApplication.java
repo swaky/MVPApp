@@ -26,7 +26,7 @@ public class MyApplication extends Application {
    {
        return (MyApplication) activity.getApplication();
    }
-
+    StackApplicationComponent component;
     private ApiInterface apiInterface;
     private Picasso picasso;
     @Override
@@ -40,7 +40,7 @@ public class MyApplication extends Application {
         Timber.plant(new Timber.DebugTree());
 
 
-        StackApplicationComponent component= DaggerStackApplicationComponent.builder()
+         component= DaggerStackApplicationComponent.builder()
                 .contextModule(new ContextModule(this))
                 .build();
 
@@ -59,4 +59,8 @@ public class MyApplication extends Application {
         return picasso;
     }
 
+    public StackApplicationComponent getComponent()
+    {
+        return component;
+    }
 }

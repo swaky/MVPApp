@@ -12,6 +12,8 @@ import com.swanand.mvpdemo.view.QuestionsView;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,12 +24,16 @@ import retrofit2.Retrofit;
  */
 
 public class QuestionsPresenter {
-    private Context context;
+    private final ApiInterface apiInterface;
+    private final QuestionsView view;
+    // private Context context;
     private QuestionsView questionsView;
     private static Retrofit retrofit = null;
 
-    public QuestionsPresenter(Context context) {
-      this.context=context;
+    @Inject
+    public QuestionsPresenter(QuestionsView view,ApiInterface apiInterface) {
+      this.view=view;
+        this.apiInterface=apiInterface;
     }
 
     public void presentQuestions(QuestionsView questionsView)
@@ -43,7 +49,7 @@ public class QuestionsPresenter {
 
 
        // MyApplication myapplication=MyApplication.get((Activity) context);
-        ApiInterface apiInterface=MyApplication.get((Activity) context).getApiInterface();
+       // ApiInterface apiInterface=MyApplication.get((Activity) context).getApiInterface();
         Map<String, String> params = new HashMap<>();
         params.put("order","desc");
         params.put("sort","activity");
