@@ -40,7 +40,10 @@ public class QuestionPresenterTest {
     public void testQuestionApi()
     {
 QuestionsView questionsView=mock(QuestionsView.class);
+
+        //questionsPresenter.test();
         questionsPresenter.getDetails();
+
         List<Item> questionses=new ArrayList<>();
         verify(questionsView).renderData(questionses);
     }

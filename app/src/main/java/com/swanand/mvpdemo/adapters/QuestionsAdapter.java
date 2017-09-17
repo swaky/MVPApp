@@ -23,6 +23,7 @@ import java.util.List;
 public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.QuestionViewHolder> {
 
     private final Context context;
+    private final Picasso picasso;
     private List<Item> items=new ArrayList<>();
 
     public void addQuestions(List<Item> items)
@@ -30,8 +31,9 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
         this.items=items;
     }
 
-    public QuestionsAdapter(Context context) {
+    public QuestionsAdapter(Context context,Picasso picasso) {
     this.context=context;
+        this.picasso=picasso;
     }
 
     @Override
@@ -45,7 +47,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
     public void onBindViewHolder(QuestionViewHolder holder, int position) {
         holder.title.setText(items.get(position).getTitle());
         holder.displayname.setText(items.get(position).getOwner().getDisplayName());
-        Picasso.with(context).load(items.get(position).getOwner().getProfileImage()).into(holder.thumbnail);
+        picasso.load(items.get(position).getOwner().getProfileImage()).into(holder.thumbnail);
 
     }
 

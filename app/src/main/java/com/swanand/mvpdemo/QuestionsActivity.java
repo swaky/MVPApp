@@ -7,6 +7,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
 import com.swanand.mvpdemo.adapters.QuestionsAdapter;
 import com.swanand.mvpdemo.model.Item;
 import com.swanand.mvpdemo.presenter.QuestionsPresenter;
@@ -26,7 +27,7 @@ public class QuestionsActivity extends AppCompatActivity implements QuestionsVie
         setContentView(R.layout.activity_questions);
 
         initRecyclerView();
-        questionsPresenter=new QuestionsPresenter();
+        questionsPresenter=new QuestionsPresenter(this);
         questionsPresenter.presentQuestions(this);
 
     }
@@ -35,7 +36,8 @@ public class QuestionsActivity extends AppCompatActivity implements QuestionsVie
         questionsRecyclerview= (RecyclerView) findViewById(R.id.recycler_view);
         questionsRecyclerview.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         questionsRecyclerview.setItemAnimator(new DefaultItemAnimator());
-        questionsAdapter=new QuestionsAdapter(this);
+        Picasso picasso=MyApplication.get(this).getPicasso();
+        questionsAdapter=new QuestionsAdapter(this,picasso);
         questionsRecyclerview.setAdapter(questionsAdapter);
     }
 

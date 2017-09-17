@@ -1,7 +1,10 @@
 package com.swanand.mvpdemo.presenter;
 
+import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 
+import com.swanand.mvpdemo.MyApplication;
 import com.swanand.mvpdemo.api.ApiInterface;
 import com.swanand.mvpdemo.model.Questions;
 import com.swanand.mvpdemo.view.QuestionsView;
@@ -13,18 +16,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by swanand on 1/28/2017.
  */
 
 public class QuestionsPresenter {
+    private Context context;
     private QuestionsView questionsView;
     private static Retrofit retrofit = null;
 
-    public QuestionsPresenter() {
-
+    public QuestionsPresenter(Context context) {
+      this.context=context;
     }
 
     public void presentQuestions(QuestionsView questionsView)
@@ -38,13 +41,9 @@ public class QuestionsPresenter {
     public void getDetails(){
 
 
-        if (retrofit==null) {
-            retrofit = new Retrofit.Builder()
-                    .baseUrl("https://api.stackexchange.com/2.2/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-        }
-        ApiInterface apiInterface=retrofit.create(ApiInterface.class);
+
+       // MyApplication myapplication=MyApplication.get((Activity) context);
+        ApiInterface apiInterface=MyApplication.get((Activity) context).getApiInterface();
         Map<String, String> params = new HashMap<>();
         params.put("order","desc");
         params.put("sort","activity");
@@ -67,4 +66,5 @@ public class QuestionsPresenter {
 
 
     }
+
 }
